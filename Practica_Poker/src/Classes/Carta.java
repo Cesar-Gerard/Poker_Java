@@ -48,7 +48,7 @@ public class Carta{
         String resultat = "" + numero;
                
             switch (numero) {
-                case 1:
+                case 14:
                     resultat = "AS";
                     break;
                 case 11:

@@ -31,11 +31,11 @@ public class Practica_Poker {
        
        
        
-       Carta primera = new Carta(1,PalsBarallaFrancesa.DIAMANTS);
-       Carta seg = new Carta(10,PalsBarallaFrancesa.DIAMANTS);
-       Carta ter = new Carta(11,PalsBarallaFrancesa.DIAMANTS);
-       Carta qar = new Carta(12,PalsBarallaFrancesa.DIAMANTS);
-       Carta cinc = new Carta(13,PalsBarallaFrancesa.DIAMANTS);
+       Carta primera = new Carta(2,PalsBarallaFrancesa.DIAMANTS);
+       Carta seg = new Carta(5,PalsBarallaFrancesa.CORS);
+       Carta ter = new Carta(6,PalsBarallaFrancesa.DIAMANTS);
+       Carta qar = new Carta(8,PalsBarallaFrancesa.DIAMANTS);
+       Carta cinc = new Carta(14,PalsBarallaFrancesa.DIAMANTS);
        
        Carta [] exit=new Carta [5];
        
@@ -48,10 +48,10 @@ public class Practica_Poker {
        
        
        Carta p = new Carta(2,PalsBarallaFrancesa.DIAMANTS);
-       Carta s = new Carta(7,PalsBarallaFrancesa.DIAMANTS);
-       Carta t = new Carta(11,PalsBarallaFrancesa.DIAMANTS);
-       Carta q = new Carta(1,PalsBarallaFrancesa.DIAMANTS);
-       Carta c = new Carta(6,PalsBarallaFrancesa.DIAMANTS);
+       Carta s = new Carta(5,PalsBarallaFrancesa.CORS);
+       Carta t = new Carta(6,PalsBarallaFrancesa.DIAMANTS);
+       Carta q = new Carta(9,PalsBarallaFrancesa.DIAMANTS);
+       Carta c = new Carta(14,PalsBarallaFrancesa.DIAMANTS);
        
        Carta [] fh=new Carta [5];
        
@@ -62,12 +62,14 @@ public class Practica_Poker {
        fh[4]=c;
                
        
-       Ma Escala = new Ma(exit);
-       Ma Color= new Ma(fh);
+       Ma Reial = new Ma(exit);
+       Ma Escala_Color= new Ma(fh);
        
        
-       Jugador tu = new Jugador(inserirJugador(),Escala);
-       Jugador Chuck = new Jugador(Color);
+       
+       
+       Jugador tu = new Jugador(inserirJugador(),Reial);
+       Jugador Chuck = new Jugador(Escala_Color);
        
        System.out.println("------------Chuck--------------");
        Chuck.cartesEnMa();
@@ -85,7 +87,7 @@ public class Practica_Poker {
             
         }
          
-        int resultat=Escala.compareTo(Color);
+        int resultat=Reial.compareTo(Escala_Color);
         MissatgeResultat(resultat,tu);
         
         

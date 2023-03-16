@@ -18,6 +18,7 @@ public class BarallaFrancesa extends Baralla {
         super ();
         this.crearBaralla();
         super.barrejar();
+        convertirValorAs();
     }
     
     public void crearBaralla ()
@@ -34,4 +35,15 @@ public class BarallaFrancesa extends Baralla {
         }
         
     }    
+    
+    
+    
+    public void convertirValorAs(){
+        for (int i = 0; i < cartes.length; i++) {
+            if(cartes[i].getNumero()==1){
+                cartes[i].setNumero(14);
+            }
+            
+        }
+    }
 }
