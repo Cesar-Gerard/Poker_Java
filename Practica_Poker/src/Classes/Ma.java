@@ -4,6 +4,13 @@
  */
 package Classes;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 /**
  *
  * @author gerar
@@ -49,12 +56,32 @@ public class Ma implements Comparable<Ma>{
         }
     }
 
+    
+    public int ordenarCartes_i_Retorna_Valor(Ma ordenar){
+        List<Carta> ordre = Arrays.asList(ordenar.llista_cartes);
+        List<Carta> resultat=ordre.stream().sorted(Comparator.comparingInt(Carta::getNumero).reversed()).collect(Collectors.toList());
+        
+        return resultat.get(0).getNumero();
+    }
+    
+    
+    
+    public List<Carta> ordenarCartes(Ma ordenar){
+        List<Carta> ordre = Arrays.asList(ordenar.llista_cartes);
+        List<Carta> resultat=ordre.stream().sorted(Comparator.comparingInt(Carta::getNumero).reversed()).collect(Collectors.toList());
+        
+        return resultat;
+    }
+     
     @Override
     public int compareTo(Ma o) {
         this.setValor(EvaluarMa(this));
         o.setValor(EvaluarMa(o));
         
-        int comparacio=comprovarValor(this.getValor(),o.getValor());
+        System.out.println(this.getValor());
+        System.out.println(o.getValor());
+        
+        int comparacio=comprovarValor(this.getValor(),o.getValor(),this,o);
         int resultat=0;
         
         
@@ -79,26 +106,135 @@ public class Ma implements Comparable<Ma>{
     //Comprova quin es el valor de la Ma 
     private int EvaluarMa(Ma entrada){
         if(EscalaReial(entrada)){
+            return 9;
+        }else if(Escala_Color(entrada)){
             return 7;
+        }else if(Full_House(entrada)){
+            return 6;
+        }else if(Color(entrada)){
+            return 5;
         }else{
             return 0;
         }
         
     }
-    
-    
-      //Compara els valors de la ma del jugador i el rival
-    private int comprovarValor(int jugador, int Chuck) {
+     
+    //Compara els valors de la ma del jugador i el rival
+    private int comprovarValor(int jugador, int Chuck,Ma tu,Ma chuck) {
         if(jugador>Chuck){
             return 1;
         }else if(Chuck>jugador){
             return 0;
         }else if(jugador == Chuck){
-            return -1;
+                if(Desempat(tu,chuck)==1){
+                    return 1;
+                }else if (Desempat(tu,chuck)==0){
+                    return 0;
+                }else{
+                    return -1;
+                }
+                
+            
         }else{
             return 2;
         } 
     }
+    
+    //En cas de empat compara les cartes depenent 
+    private int Desempat(Ma tu, Ma chuck) {
+        int resultat=-1;
+        
+        switch(this.getValor()){
+            case 6:
+                 int val1=ordenarCartes_i_Retorna_Valor(tu);
+                 int val2=ordenarCartes_i_Retorna_Valor(chuck);
+                 
+                 if(val1>val2){
+                     resultat= 1;
+                 }else if(val1<val2){
+                     resultat=2;
+                 }else if(val1==val2){
+                     resultat=-1;
+                 }  
+            break;
+            
+            
+        }
+       
+        return resultat;
+        
+    }
+    
+  
+//<editor-fold defaultstate="collapsed" desc="Escala_Color">
+    private boolean Escala_Color(Ma comparar){
+      int compt=0;
+        
+        if(compararPalReial(comparar.llista_cartes)){
+              
+            
+            
+            
+            for (int i = 1; i < comparar.llista_cartes.length; i++) {
+                
+                
+                
+            }
+        }
+        
+      
+        if(compt ==llista_cartes.length){
+            return true;
+        }else{
+            return false;
+        }
+    }    
+    
+//</editor-fold>   
+   
+//<editor-fold defaultstate="collapsed" desc="Color">
+    private boolean Color(Ma comparar){
+        if(compararPalReial(comparar.llista_cartes)){
+            return true;
+        }else{
+            return false;
+        }
+    }    
+    
+//</editor-fold>
+    
+//<editor-fold defaultstate="collapsed" desc="Full_House"> 
+    private boolean Full_House(Ma comparar){
+        int comv1=0;
+        int comv2=0;
+        
+        int ref = comparar.llista_cartes[0].getNumero();
+        int ref2=0;
+        
+        for (int i = 0; i < comparar.llista_cartes.length; i++) {
+            if(comparar.llista_cartes[i].getNumero()==ref){
+                comv1++;
+            }else{
+                if(comv2==0){
+                    ref2 = comparar.llista_cartes[i].getNumero();
+                    comv2++;
+                }else if(comv2!=0 && comparar.llista_cartes[i].getNumero()==ref2){
+                    comv2++;
+                }
+            }
+            
+        }
+        
+        if(comv1==3 && comv2==2){
+            return true;
+        }else{
+            return false;
+        }
+        
+        
+    }
+    
+//</editor-fold>
     
 //<editor-fold defaultstate="collapsed" desc="Escala Reial">
     
@@ -166,8 +302,6 @@ public class Ma implements Comparable<Ma>{
 
     
 //</editor-fold>
-    
-  
 
-      
+    
 }

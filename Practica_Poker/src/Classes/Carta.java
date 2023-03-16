@@ -141,6 +141,7 @@ public class Carta{
         return resultat;
     }
 //</editor-fold>
+
+
     
-       
 }

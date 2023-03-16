@@ -44,13 +44,30 @@ public class Practica_Poker {
        exit[2]=ter;
        exit[3]=qar;
        exit[4]=cinc;
+       
+       
+       
+       Carta p = new Carta(2,PalsBarallaFrancesa.DIAMANTS);
+       Carta s = new Carta(7,PalsBarallaFrancesa.DIAMANTS);
+       Carta t = new Carta(11,PalsBarallaFrancesa.DIAMANTS);
+       Carta q = new Carta(1,PalsBarallaFrancesa.DIAMANTS);
+       Carta c = new Carta(6,PalsBarallaFrancesa.DIAMANTS);
+       
+       Carta [] fh=new Carta [5];
+       
+       fh[0]=p;
+       fh[1]=s;
+       fh[2]=t;
+       fh[3]=q;
+       fh[4]=c;
                
        
        Ma Escala = new Ma(exit);
+       Ma Color= new Ma(fh);
        
        
        Jugador tu = new Jugador(inserirJugador(),Escala);
-       Jugador Chuck = new Jugador(rival);
+       Jugador Chuck = new Jugador(Color);
        
        System.out.println("------------Chuck--------------");
        Chuck.cartesEnMa();
@@ -68,7 +85,7 @@ public class Practica_Poker {
             
         }
          
-        int resultat=Escala.compareTo(rival);
+        int resultat=Escala.compareTo(Color);
         MissatgeResultat(resultat,tu);
         
         
