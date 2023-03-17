@@ -80,6 +80,8 @@ public class Jugador {
            String llegir;
            String separats[]=null;
            
+           
+           
            System.out.println("Quina carta vols intercanviar(Ex:1,2,3) "+this.getNom()+"?");
                       
            llegir = entrada.next();
@@ -92,7 +94,24 @@ public class Jugador {
                }
            
                
-        
+               
+               
+           while(resultat.length>5){
+           resultat=null;
+           System.out.println("Quina carta vols intercanviar(Ex:1,2,3) "+this.getNom()+"?");
+                      
+           llegir = entrada.next();
+           
+           separats=llegir.split(",");
+           resultat = new int[separats.length];
+               for (int i = 0; i < separats.length; i++) {
+                   resultat[i]=Integer.valueOf(separats[i]);
+                   
+               }   
+               
+            
+           }   
+           
            return resultat;
            
            

@@ -22,55 +22,24 @@ public class Practica_Poker {
      */
     public static void main(String[] args) {
         BarallaFrancesa b = new BarallaFrancesa ();
-        
-       
+          
         
        Ma usuari = new Ma(b.repartirCartes(5));
        Ma rival = new Ma(b.repartirCartes(5));
+          
+
+       Jugador tu = new Jugador(inserirJugador(),usuari);
+       Jugador Chuck = new Jugador(rival);
        
+
+       System.out.println("------------"+tu.getNom()+"----------");
+       tu.cartesEnMa(); 
+       if(preguntarcanvi()){
+            jugar(tu,b);
+            
+        }
        
-       
-       
-       Carta primera = new Carta(2,PalsBarallaFrancesa.DIAMANTS);
-       Carta seg = new Carta(5,PalsBarallaFrancesa.CORS);
-       Carta ter = new Carta(6,PalsBarallaFrancesa.DIAMANTS);
-       Carta qar = new Carta(8,PalsBarallaFrancesa.DIAMANTS);
-       Carta cinc = new Carta(14,PalsBarallaFrancesa.DIAMANTS);
-       
-       Carta [] exit=new Carta [5];
-       
-       exit[0]=primera;
-       exit[1]=seg;
-       exit[2]=ter;
-       exit[3]=qar;
-       exit[4]=cinc;
-       
-       
-       
-       Carta p = new Carta(2,PalsBarallaFrancesa.DIAMANTS);
-       Carta s = new Carta(5,PalsBarallaFrancesa.CORS);
-       Carta t = new Carta(6,PalsBarallaFrancesa.DIAMANTS);
-       Carta q = new Carta(9,PalsBarallaFrancesa.DIAMANTS);
-       Carta c = new Carta(14,PalsBarallaFrancesa.DIAMANTS);
-       
-       Carta [] fh=new Carta [5];
-       
-       fh[0]=p;
-       fh[1]=s;
-       fh[2]=t;
-       fh[3]=q;
-       fh[4]=c;
-               
-       
-       Ma Reial = new Ma(exit);
-       Ma Escala_Color= new Ma(fh);
-       
-       
-       
-       
-       Jugador tu = new Jugador(inserirJugador(),Reial);
-       Jugador Chuck = new Jugador(Escala_Color);
-       
+ 
        System.out.println("------------Chuck--------------");
        Chuck.cartesEnMa();
        if(preguntarcanvi()){
@@ -79,15 +48,15 @@ public class Practica_Poker {
 
         }
        
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        
        System.out.println("------------"+tu.getNom()+"----------");
        tu.cartesEnMa();
+       System.out.println("------------Chuck--------------");
+       Chuck.cartesEnMa();
        
-       if(preguntarcanvi()){
-            jugar(tu,b);
-            
-        }
-         
-        int resultat=Reial.compareTo(Escala_Color);
+       
+        int resultat= tu.getActual().compareTo(Chuck.getActual());
         MissatgeResultat(resultat,tu);
         
         
